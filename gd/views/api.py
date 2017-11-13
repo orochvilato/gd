@@ -11,10 +11,10 @@ from pymongo import InsertOne, DeleteMany, ReplaceOne, UpdateOne
 
 from gd.config import cache_pages_delay
 
-cache_pages_delay = 600
 
-@cache_function(expires=cache_pages_delay)
+
 @app.route('/api/clivages/get',methods=['GET'])
+@cache_function(expires=cache_pages_delay)
 def getclivages():
     resp = {'data':list(mdb.clivages.find({},{'_id':None,'i':1,'d':1,'g':1,'n':1}))}
     return json_response(resp)

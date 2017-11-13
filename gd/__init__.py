@@ -27,7 +27,7 @@ def use_cache(k,fct,expires=60):
         v = fct()
         memcache.set(k,v,time=expires)
     else:
-        print "cached"
+        pass
     return v
 
 from views import api
