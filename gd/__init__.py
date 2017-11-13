@@ -6,7 +6,7 @@ from bson import json_util
 
 from config_private import mongo_readwrite_user,mongo_readwrite_password
 
-client = pymongo.MongoClient('mongodb://%s:%s@observatoire-assemblee.orvdev.fr:27017/gauchedroite' %(mongo_readwrite_user,mongo_readwrite_password))
+client = pymongo.MongoClient('mongodb://%s:%s@gauchedroite.orvdev.fr:27017/gauchedroite' %(mongo_readwrite_user,mongo_readwrite_password))
 mdb = client.gauchedroite
 
 from flask import Flask
@@ -15,7 +15,7 @@ app = Flask(__name__)
 CORS(app)
 
 import bmemcached
-memcache = bmemcached.Client(('observatoire-assemblee.orvdev.fr:11211',))
+memcache = bmemcached.Client(('memcache.orvdev.fr:11211',))
 
 def use_cache(k,fct,expires=60):
     if expires==0:
