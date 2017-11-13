@@ -7,8 +7,10 @@ def json_response(r):
     return resp
 
 
+from functools import wraps
 def cache_function(expires=0):
     def wrap(f):
+        @wraps(f)
         def wrapped_f(*args,**kwargs):
             return use_cache(request.url,lambda:f(*args,**kwargs),expires=expires)
         return wrapped_f
