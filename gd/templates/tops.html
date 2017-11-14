@@ -1,0 +1,18 @@
+<html>
+<body>
+  <h2>Top 10 gauche</h2>
+  <ul>
+    {% for c in g %}<li>{{ c[0] }} ({{ c[1] }}%)</li>{% endfor %}
+  </ul>
+  <hr/>
+  <h2>Top 10 droite</h2>
+  <ul>
+    {% for c in d %}<li>{{ c[0] }} ({{ c[1] }}%)</li>{% endfor %}
+  </ul>
+  <hr/>
+  <h2>Top indécis</h2>
+  <ul>
+    {% for c in ps %}<li>{{ c[0] }} ({{ c[2] }}/{{ c[3] }})</li>{% endfor %}
+  </ul>
+</body>
+</html>
