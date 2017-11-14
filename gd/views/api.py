@@ -24,7 +24,6 @@ def updateclivages():
     resp = request.get_json(force=True,silent=True)
     ops = []
     for o in resp['data']:
-        print o['n']
         if o.get('g',False):
             ops.append(UpdateOne({'i':o['i']},{'$inc':{'g':1}}))
         else:
