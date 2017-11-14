@@ -30,4 +30,4 @@ def use_cache(k,fct,expires=60):
         pass
     return v
 
-from views import api,stats
+from views import api,stats,logs
