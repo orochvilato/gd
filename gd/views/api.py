@@ -23,6 +23,8 @@ def getclivages():
 def updateclivages():
     resp = request.get_json(force=True,silent=True)
     ops = []
+    if not resp:
+        return '',200
     for o in resp['data']:
         if o.get('g',False):
             ops.append(UpdateOne({'i':o['i']},{'$inc':{'g':1}}))
@@ -30,7 +32,7 @@ def updateclivages():
             ops.append(UpdateOne({'i':o['i']},{'$inc':{'d':1}}))
     if len(ops)>0:
         mdb.clivages.bulk_write(ops)
-    return json_response(resp),200
+    return '',200
 
 @app.route('/api/clivages/init',methods=['get'])
 def init():
