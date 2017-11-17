@@ -12,3 +12,8 @@ def logs():
     resp.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     resp.headers['Pragma'] = 'no-cache'
     return resp
+
+@app.route('/updatelogs')
+def updatelogs():
+    return json_response(request.environ)
+    return json_response(list(mdb.logs.find()))
