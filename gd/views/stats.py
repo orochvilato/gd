@@ -27,3 +27,10 @@ def tops():
     pcts['gauche'].sort(key=lambda x:x[1],reverse=True)
     pcts['droite'].sort(key=lambda x:x[1],reverse=True)
     return render_template('tops.html',g=pcts['gauche'][:10],d=pcts['droite'][:10],ps=pcts['passur'])
+
+@app.route('/stats/liste')
+def liste():
+    mdb.clivages.delete_many({'$or':[{'d':None},{'g':None}]})
+    lst = list(mdb.clivages.find({},{'_id':None}))
+    lst.sort(key=lambda x:max((x['g'],x['d'])),reverse=True)
+    return render_template('liste.html',l=lst)

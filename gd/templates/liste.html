@@ -1,0 +1,8 @@
+<html>
+<table>
+  <tr><th>ID</th><th>Mot</th><th>Gauche</th><th>Droite</th></tr>
+  {% for it in l %}
+  <tr><td>{{ it['i']}}</td><td>{{ it["n"]}}</td><td>{{ it["g"] }}</td><td>{{it["d"]}}</td></tr>
+  {% endfor %}
+</table>
+<html>
