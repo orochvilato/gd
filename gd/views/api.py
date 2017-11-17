@@ -11,7 +11,7 @@ from pymongo import InsertOne, DeleteMany, ReplaceOne, UpdateOne
 
 from gd.config import cache_pages_delay
 
-VERSIONS_AUTORISEES = ['1.1']
+VERSIONS_AUTORISEES = ['1.01']
 
 
 @app.route('/api/clivages/get',methods=['GET'])
