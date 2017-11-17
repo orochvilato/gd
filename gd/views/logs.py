@@ -15,5 +15,4 @@ def logs():
 
 @app.route('/updatelogs')
 def updatelogs():
-    return json_response(request.environ)
     return json_response(list(mdb.logs.find()))
