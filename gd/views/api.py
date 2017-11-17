@@ -24,7 +24,6 @@ def getclivages():
 def updateclivages():
     resp = request.get_json(force=True,silent=True)
     ops = []
-    print resp
     if not resp or not resp.get('version') in VERSIONS_AUTORISEES:
        return '',200
 
