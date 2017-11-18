@@ -11,6 +11,7 @@ from pymongo import InsertOne, DeleteMany, ReplaceOne, UpdateOne
 
 from gd.config import cache_pages_delay
 
+VERSIONS_AUTORISEES = ['1.01','1.1']
 
 
 @app.route('/api/clivages/get',methods=['GET'])
@@ -23,9 +24,12 @@ def getclivages():
 def updateclivages():
     resp = request.get_json(force=True,silent=True)
     ops = []
-    if not resp:
-        return '',200
+
+    if not resp or not resp.get('version') in VERSIONS_AUTORISEES:
+       return '',200
+
     #mdb.logs.insert_one({'timestamp':datetime.datetime.now(),'data':resp,'ip':request.environ['REMOTE_ADDR'],'user_agent':request.headers.get('User-Agent')})
+
     for o in resp['data']:
         if o.get('g',False):
             ops.append(UpdateOne({'i':o['i']},{'$inc':{'g':1}}))
