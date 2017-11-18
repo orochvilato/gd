@@ -25,7 +25,7 @@ def updateclivages():
     ops = []
     if not resp:
         return '',200
-    mdb.logs.insert_one({'timestamp':datetime.datetime.now(),'data':resp,'ip':request.environ['REMOTE_ADDR'],'user_agent':request.headers.get('User-Agent')})
+    #mdb.logs.insert_one({'timestamp':datetime.datetime.now(),'data':resp,'ip':request.environ['REMOTE_ADDR'],'user_agent':request.headers.get('User-Agent')})
     for o in resp['data']:
         if o.get('g',False):
             ops.append(UpdateOne({'i':o['i']},{'$inc':{'g':1}}))
