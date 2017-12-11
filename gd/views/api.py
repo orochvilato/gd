@@ -11,7 +11,7 @@ from pymongo import InsertOne, DeleteMany, ReplaceOne, UpdateOne
 
 from gd.config import cache_pages_delay
 
-VERSIONS_AUTORISEES = ['1.0','1.1','1.2','1.3','1.4']
+VERSIONS_AUTORISEES = ['1.0','1.1','1.2','1.3','1.4','1.5']
 
 
 @app.route('/api/clivages/get',methods=['GET'])
@@ -34,7 +34,7 @@ def updateclivages():
         print resp.get('version')
         return '',403
 
-    #return '',200
+    return '',200
 
     for o in resp['data']:
         if o.get('g',False):
