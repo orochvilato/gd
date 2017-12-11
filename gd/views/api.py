@@ -20,7 +20,7 @@ def getclivages():
     resp = {'data':list(mdb.clivages.find({},{'_id':None,'i':1,'d':1,'g':1,'n':1}))}
     return json_response(resp)
 
-@app.route('/api/clivages/update',methods=['POST'])
+@app.route('/api/clivages/update',methods=['POST','PUT'])
 def updateclivages():
     resp = request.get_json(force=True,silent=True)
     ops = []
