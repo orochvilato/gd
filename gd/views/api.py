@@ -31,6 +31,7 @@ def updateclivages():
         return '',403
 
     if not resp or not resp.get('version') in VERSIONS_AUTORISEES:
+        print rest.get('version')
         return '',403
 
     return '',200
