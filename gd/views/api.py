@@ -34,7 +34,7 @@ def updateclivages():
         print resp.get('version')
         return '',403
 
-    return '',200
+    #return '',200
 
     for o in resp['data']:
         if o.get('g',False):
