@@ -11,7 +11,7 @@ from pymongo import InsertOne, DeleteMany, ReplaceOne, UpdateOne
 
 from gd.config import cache_pages_delay
 
-VERSIONS_AUTORISEES = ['1.0','1.1','1.2','1.3','1.4','1.5']
+VERSIONS_AUTORISEES = ['1.5']
 
 
 @app.route('/api/clivages/get',methods=['GET'])
@@ -20,7 +20,7 @@ def getclivages():
     resp = {'data':list(mdb.clivages.find({},{'_id':None,'i':1,'d':1,'g':1,'n':1}))}
     return json_response(resp)
 
-@app.route('/api/clivages/update',methods=['POST','PUT'])
+@app.route('/api/clivages/update',methods=['POST'])
 def updateclivages():
     resp = request.get_json(force=True,silent=True)
     ops = []
