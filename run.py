@@ -2,9 +2,16 @@ from gd import app,mdb
 from flask import render_template,make_response
 
 import datetime
+
+import json
 @app.route('/test')
 def test():
-    mdb.logs.remove()
+    for c in mdb.clivages.find():
+        tot = c['g']+c['d']
+        if tot>600:
+            mdb.clivages.update({'i':c['i']},{'$set':{'g':0,'d':0}})
+            print c
+    #mdb.logs.remove()
     return "ok"
     from openpyxl import Workbook
     from openpyxl.writer.excel import save_virtual_workbook

@@ -26,14 +26,14 @@ def updateclivages():
     ops = []
 
 
-    if resp: #and resp.get('version')=='dev':
+    if resp and resp.get('version')=='dev':
         mdb.logs.insert_one({'timestamp':datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S'),'data':resp,'ip':request.environ['REMOTE_ADDR'],'user_agent':request.headers.get('User-Agent')})
         return '',403
 
     if not resp or not resp.get('version') in VERSIONS_AUTORISEES:
         return '',403
 
-    return '',200
+    #return '',200
 
     for o in resp['data']:
         if o.get('g',False):
