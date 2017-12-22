@@ -11,7 +11,8 @@ from pymongo import InsertOne, DeleteMany, ReplaceOne, UpdateOne
 
 from gd.config import cache_pages_delay
 
-VERSIONS_AUTORISEES = ['1.5']
+VERSIONS_AUTORISEES = {'ios':['1.1'],
+                       'android':['1.5']}
 
 
 @app.route('/api/clivages/get',methods=['GET'])
@@ -24,13 +25,14 @@ def getclivages():
 def updateclivages():
     resp = request.get_json(force=True,silent=True)
     ops = []
+    user_agent = request.headers.get('User-Agent')
+    archi = 'ios' if ('CFNetwork' in user_agent and 'Darwin' in user_agent) else 'android'
     if 1:
-        mdb.logs.insert_one({'timestamp':datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S'),'data':resp,'ip':request.environ['REMOTE_ADDR'],'user_agent':request.headers.get('User-Agent')})
+        mdb.logs.insert_one({'archi':archi,'timestamp':datetime.datetime.now().strftime('%d/%m/%Y %H:%M:%S'),'data':resp,'ip':request.environ['REMOTE_ADDR'],'user_agent':request.headers.get('User-Agent')})
     if resp and resp.get('version')=='dev':
-
         return '',403
 
-    if not resp or not resp.get('version') in VERSIONS_AUTORISEES:
+    if not resp or not resp.get('version') in VERSIONS_AUTORISEES[archi]:
         return '',403
 
     #return '',200
