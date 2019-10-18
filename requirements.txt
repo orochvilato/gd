@@ -13,5 +13,5 @@ openpyxl==2.4.9
 python-binary-memcached==0.26.1
 requests==2.18.4
 six==1.11.0
-urllib3==1.22
+urllib3==1.24.2
 Werkzeug==0.12.2
